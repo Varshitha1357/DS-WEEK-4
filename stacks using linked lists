@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+	int data;
+	struct node*next;
+};
+typedef struct node NODE;
+void insert(int);
+void delete();
+void display();
+
+NODE*top=NULL;
+
+int main(){
+	int choice,value;
+	while(1){
+		printf("\nMENU\n");
+		printf("1)insert\n");
+		printf("2)delete\n");
+		printf("3)display\n");
+		printf("4)exit\n");
+		printf("enter your choice:");
+		scanf("%d",&choice);
+		
+		switch(choice){
+			case 1:printf("enter element to be insterted:");
+				  scanf("%d",&value);
+				  insert(value);
+				  break;
+			case 2:delete();
+				    break;
+			case 3:display();
+				    break;
+			case 4:exit(0);
+			default:printf("INAVLID CHOICE\n");
+		}
+	}
+}
+void insert( int value){
+	NODE*temp;
+	temp=(NODE*)malloc(sizeof(NODE));
+	temp->data=value;
+	temp->next=top;
+	top=temp;
+}
+void display(){
+	NODE*temp=top;
+	if(top==NULL)
+		printf("list is empty\n");
+	else{
+		printf("list content\n");
+		while(temp!=NULL){
+			printf("%5d",temp->data);
+			temp=temp->next;
+		}
+	}
+}
+void delete(){
+	NODE*temp;
+	if(top==NULL)
+		printf("list is empty");
+	else{
+		temp=top;
+		top=top->next;
+		printf("element is deleted:%d\n",temp->data);
+		free(temp);
+	}
+}
+
+	
+	
+	
